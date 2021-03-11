@@ -1,22 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
 
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {Button, Pressable, StyleSheet, Text} from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
+  const translateY = useSharedValue(0)
+
+  const styles = useAnimatedStyle(()=> ({
+    transform: [{translateX: withSpring(translateY.value) }]
+  }))
+
   return (
     <>
-      <Text>Hello</Text>
+      <Animated.View style={[styles]}><Text> Hello</Text></Animated.View>
+      <Pressable onPress={()=>translateY.value += 100}>
+        <Text>press</Text>
+      </Pressable>
     </>
   );
 };
