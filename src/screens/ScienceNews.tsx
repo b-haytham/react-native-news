@@ -1,12 +1,26 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import TopTabBar from '../components/TopTabBar'
+import { ScienceNewsScreenNavigationProps, ScienceNewsScreenRouteProps } from '../types/Screens'
 
-const TechNews = () => {
+interface ScienceNewsProps {
+    navigtion: ScienceNewsScreenNavigationProps
+    route: ScienceNewsScreenRouteProps
+}
+
+const ScienceNews: React.FC<ScienceNewsProps> = () => {
     return (
-        <View>
-            <Text>TechNews</Text>
+        <View style={styles.container}>
+            <TopTabBar />
+            <Text>ScienceNews</Text>
         </View>
     )
 }
 
-export default TechNews
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
+
+export default ScienceNews

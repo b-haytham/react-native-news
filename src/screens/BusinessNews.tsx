@@ -1,12 +1,26 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import TopTabBar from '../components/TopTabBar'
+import { BusinessNewsScreenNavigationProps, BusinessNewsScreenRouteProps } from '../types/Screens'
 
-const BusinessNews = () => {
+interface BusinessNewsProps {
+    navigation: BusinessNewsScreenNavigationProps
+    route: BusinessNewsScreenRouteProps
+}
+
+const BusinessNews: React.FC<BusinessNewsProps> = () => {
     return (
-        <View>
+        <View style={styles.container}>
+            <TopTabBar />
             <Text>PoliticsNews</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
 
 export default BusinessNews

@@ -14,12 +14,12 @@ const Stack = createStackNavigator<StackNavigationParamList>()
 const NewsFlow = () => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen  name='General' component={GeneralNews} />
-            <Stack.Screen  name='Politics' component={PoliticsNews} />
-            <Stack.Screen  name='Business' component={BusinessNews} />
-            <Stack.Screen  name='Tech' component={TechNews} />
-            <Stack.Screen  name='Science' component={ScienceNews} />
-            <Stack.Screen  name='Entertainment' component={EntertainmentNews} />
+            <Stack.Screen  name='General' component={GeneralNews} options={{animationEnabled: false}} />
+            <Stack.Screen  name='Politics' component={PoliticsNews} options={{animationEnabled: false}} />
+            <Stack.Screen  name='Business' component={BusinessNews} options={{animationEnabled: false}}  />
+            <Stack.Screen  name='Tech' component={TechNews} options={{animationEnabled: false}} />
+            <Stack.Screen  name='Science' component={ScienceNews} options={{animationEnabled: false}} />
+            <Stack.Screen  name='Entertainment' component={EntertainmentNews} options={{animationEnabled: false}} />
             <Stack.Screen  name='SinglePost' component={SinglePost} />
         </Stack.Navigator>
     )
