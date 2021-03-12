@@ -1,7 +1,10 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, ViewProps} from 'react-native';
 import Animated, {
+  Extrapolate,
+  interpolate,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
@@ -9,12 +12,17 @@ import Animated, {
 interface HeaderProps extends ViewProps {
   text: string;
   isFocused: boolean;
+  scrollTranslateY: Animated.SharedValue<number>
 }
 
-const Header: React.FC<HeaderProps> = ({text, isFocused}) => {
+const Header: React.FC<HeaderProps> = ({text, isFocused, scrollTranslateY}) => {
   const translateX = useSharedValue(-100);
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.5);
+
+  const textScale = useDerivedValue(()=> {
+    return interpolate(scrollTranslateY.value, [0,50], [1, 0.3], Extrapolate.CLAMP)
+  })
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -25,6 +33,12 @@ const Header: React.FC<HeaderProps> = ({text, isFocused}) => {
       ],
     };
   });
+
+  const animatedTextStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{scale: textScale.value}, {translateY: -scrollTranslateY.value * 2}]
+    }
+  })
 
   useEffect(() => {
     if (isFocused) {
@@ -40,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({text, isFocused}) => {
 
   return (
     <Animated.View style={[styles.headerContainer, animatedStyles]}>
-      <Text style={styles.text}> {text} </Text>
+      <Animated.Text style={[styles.text, animatedTextStyles]}> {text} </Animated.Text>
     </Animated.View>
   );
 };

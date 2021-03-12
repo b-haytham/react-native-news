@@ -1,6 +1,10 @@
 import {useIsFocused} from '@react-navigation/core';
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
 import Header from '../components/Header';
 import Layout from '../components/Layout';
 import NewsList from '../components/NewsList';
@@ -21,14 +25,23 @@ const GeneralNews: React.FC<GeneralNewsProps> = ({route}) => {
   const generalNews = useAppSelector((state) => state.newsSclice.data).filter(
     (news) => news.topic === 'news',
   );
-  
+
+  const scrollTranslateY = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollTranslateY.value = event.contentOffset.y;
+  });
+
   return (
     <Layout colorLevel="1" style={styles.container}>
       <TopTabBar activeRouteName={route.name} />
-      <ScrollView style={{flex: 1, paddingHorizontal: 15}}>
-        <Header isFocused={isFocused} text="General News" />
+      <Animated.ScrollView
+        scrollEventThrottle={16}
+        onScroll={scrollHandler}
+        style={{flex: 1, paddingHorizontal: 15}}>
+        <Header scrollTranslateY={scrollTranslateY} isFocused={isFocused} text="General News" />
         <NewsList articles={generalNews} />
-      </ScrollView>
+      </Animated.ScrollView>
     </Layout>
   );
 };
