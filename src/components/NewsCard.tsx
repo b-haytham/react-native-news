@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {StyleSheet, View, Image, Dimensions, Text} from 'react-native';
 
@@ -25,8 +26,9 @@ const {width} = Dimensions.get('screen');
 
 const NewsCard: React.FC<NewsCardProps> = ({article, isInFavourite, isFavouriteScreen}) => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation()
   return (
-    <Card style={[styles.container, {height: article.media && 300}]}>
+    <Card style={[styles.container, {height: article.media ? 300 : undefined}]}>
       {article.media && (
         <Image
           source={{uri: article.media as string}}
@@ -54,7 +56,7 @@ const NewsCard: React.FC<NewsCardProps> = ({article, isInFavourite, isFavouriteS
                 <LikeIcon width={30} height={30} fill="#fff" />
               </TouchableScale>
             )}
-            <TouchableScale activeScale={0.7}>
+            <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('SinglePost', {article})}>
               <RightArrowIcon
                 width={30}
                 height={30}
