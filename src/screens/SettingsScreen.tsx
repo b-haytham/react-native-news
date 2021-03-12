@@ -1,13 +1,24 @@
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import Layout from '../components/Layout';
+import {
+  SettingsScreenNavigationProps,
+  SettingsScreenRouteProps,
+} from '../types/Screens';
 
-import React from 'react'
-import { Text, View } from 'react-native'
-
-const SettingsScreen = () => {
-    return (
-        <View>
-            <Text>SettingsScreen</Text>
-        </View>
-    )
+interface SettingsScreenProps {
+  navigation: SettingsScreenNavigationProps;
+  route: SettingsScreenRouteProps;
 }
 
-export default SettingsScreen
+const SettingsScreen: React.FC<SettingsScreenProps> = () => {
+  return <Layout colorLevel="1" style={styles.container}></Layout>;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default SettingsScreen;

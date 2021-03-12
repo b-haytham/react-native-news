@@ -1,13 +1,33 @@
+import {useIsFocused} from '@react-navigation/core';
+import React from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import Header from '../components/Header';
+import Layout from '../components/Layout';
+import {
+  FavouriteScreenNavigationProps,
+  FavouriteScreenRouteProps,
+} from '../types/Screens';
 
-import React from 'react'
-import { Text, View } from 'react-native'
-
-const FavouriteScreen = () => {
-    return (
-        <View>
-            <Text>FavouriteScreen</Text>
-        </View>
-    )
+interface FavouriteScreenProps {
+  navigation: FavouriteScreenNavigationProps;
+  route: FavouriteScreenRouteProps;
 }
 
-export default FavouriteScreen
+const FavouriteScreen: React.FC<FavouriteScreenProps> = () => {
+  const isFocused = useIsFocused();
+  return (
+    <Layout colorLevel="1" style={styles.container}>
+      <ScrollView>
+        <Header text="Favourite News" isFocused={isFocused} />
+      </ScrollView>
+    </Layout>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default FavouriteScreen;

@@ -1,26 +1,35 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import TopTabBar from '../components/TopTabBar'
-import { PoliticsNewsScreenNavigationProps, PoliticsNewsScreenRouteProps } from '../types/Screens'
+import {useIsFocused} from '@react-navigation/core';
+import React from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import Header from '../components/Header';
+import Layout from '../components/Layout';
+import TopTabBar from '../components/TopTabBar';
+import {
+  PoliticsNewsScreenNavigationProps,
+  PoliticsNewsScreenRouteProps,
+} from '../types/Screens';
 
 interface PoliticsNewsProps {
-    navigation: PoliticsNewsScreenNavigationProps
-    route: PoliticsNewsScreenRouteProps
+  navigation: PoliticsNewsScreenNavigationProps;
+  route: PoliticsNewsScreenRouteProps;
 }
 
 const PoliticsNews: React.FC<PoliticsNewsProps> = ({route}) => {
-    return (
-        <View style={styles.container}>
-            <TopTabBar activeRouteName={route.name} />
-            <Text>PoliticsNews</Text>
-        </View>
-    )
-}
+  const isFocused = useIsFocused();
+  return (
+    <Layout colorLevel='1' style={styles.container}>
+      <TopTabBar activeRouteName={route.name} />
+      <ScrollView>
+        <Header text="Politics News" isFocused={isFocused} />
+      </ScrollView>
+    </Layout>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    }
-})
+  container: {
+    flex: 1,
+  },
+});
 
-export default PoliticsNews
+export default PoliticsNews;

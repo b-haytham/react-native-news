@@ -1,12 +1,24 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import Layout from '../components/Layout';
+import {
+  SearchScreenNavigationProps,
+  SearchScreenRouteProps,
+} from '../types/Screens';
 
-const SearchScreen = () => {
-    return (
-        <View>
-            <Text>SearchScreen</Text>
-        </View>
-    )
+interface SearchScreenProps {
+  navigation: SearchScreenNavigationProps;
+  route: SearchScreenRouteProps;
 }
 
-export default SearchScreen
+const SearchScreen: React.FC<SearchScreenProps> = () => {
+  return <Layout colorLevel="1" style={styles.container}></Layout>;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default SearchScreen;

@@ -1,5 +1,8 @@
+import { useIsFocused } from '@react-navigation/core'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import Header from '../components/Header'
+import Layout from '../components/Layout'
 import TopTabBar from '../components/TopTabBar'
 import { BusinessNewsScreenNavigationProps, BusinessNewsScreenRouteProps } from '../types/Screens'
 
@@ -9,11 +12,14 @@ interface BusinessNewsProps {
 }
 
 const BusinessNews: React.FC<BusinessNewsProps> = ({route}) => {
+    const isFocused = useIsFocused()
     return (
-        <View style={styles.container}>
+        <Layout colorLevel='1' style={styles.container}>
             <TopTabBar activeRouteName={route.name} />
-            <Text>PoliticsNews</Text>
-        </View>
+            <ScrollView>
+                <Header text='Business News' isFocused={isFocused} />
+            </ScrollView>
+        </Layout>
     )
 }
 
