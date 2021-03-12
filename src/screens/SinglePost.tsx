@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import Layout from '../components/Layout';
@@ -16,30 +17,58 @@ import {
 import * as Animatable from 'react-native-animatable';
 import CancelIcon from '../components/icons/CancelIcon';
 import TouchableScale from 'react-native-touchable-scale';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 interface SinglePostProps {
   navigation: SingleNewsPostScreenNavigationProps;
   route: SingleNewsPostScreenRouteProps;
 }
 
-const {width} = Dimensions.get('screen');
+
 
 const SinglePost: React.FC<SinglePostProps> = ({route, navigation}) => {
   const article = route.params.article;
+  const {width: W, height: H} = useWindowDimensions()
+
+  const width = useSharedValue(W)
+  const height = useSharedValue(H)
+  const translateX = useSharedValue(0)
+  const translateY = useSharedValue(0)
+  const borderRadius = useSharedValue(0)
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      flex: 1,
+      overflow: 'hidden',
+      width: withTiming(width.value),
+      height: withTiming(height.value),
+      borderRadius: withTiming(borderRadius.value),
+      transform: [{translateY: withTiming(translateY.value) }] 
+    }
+  })
+
+  const handleGoBack = () => {
+    
+    translateY.value = H  
+    borderRadius.value = 50
+    navigation.goBack()
+  }
+
   return (
+    <Animated.View style={animatedStyles}>
     <Layout colorLevel="1" style={styles.container}>
       <ScrollView style={{flex: 1}}>
         <View>
           <TouchableScale
             style={styles.cancelIcon}
             activeScale={0.7}
-            onPress={() => navigation.goBack()}>
+            onPress={handleGoBack}>
             <CancelIcon width={30} height={30} fill="#000" />
           </TouchableScale>
           {article.media && (
             <Image
               source={{uri: article.media}}
-              style={{width, height: 200}}
+              style={{width: W, height: 200}}
               resizeMode="cover"
             />
           )}
@@ -85,6 +114,7 @@ const SinglePost: React.FC<SinglePostProps> = ({route, navigation}) => {
         </View>
       </ScrollView>
     </Layout>
+    </Animated.View>
   );
 };
 
