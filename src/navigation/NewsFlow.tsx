@@ -13,7 +13,7 @@ const Stack = createStackNavigator<StackNavigationParamList>()
 
 const NewsFlow = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen  name='General' component={GeneralNews} />
             <Stack.Screen  name='Politics' component={PoliticsNews} />
             <Stack.Screen  name='Business' component={BusinessNews} />

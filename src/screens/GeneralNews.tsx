@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 
 const GeneralNews = () => {
     return (
-        <View>
+        <View style={{flex: 1}}>
             <Text>GeneralNews</Text>
         </View>
     )
