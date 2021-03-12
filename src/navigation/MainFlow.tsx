@@ -10,12 +10,14 @@ import HomeIcon from '../components/icons/HomeIcon';
 import SearchIcon from '../components/icons/SearchIcon';
 import FavouriteIcon from '../components/icons/FavouriteIcon';
 import SettingIcon from '../components/icons/SettingIcons';
+import { useAppSelector } from '../redux/store';
 
 const Tab = createBottomTabNavigator<BottomTabNavigationParamList>();
 
 
 
 const MainFlow = () => {
+  const favouritePosts = useAppSelector(state => state.favouriteSlice.favouriteNews)
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -48,6 +50,8 @@ const MainFlow = () => {
           tabBarIcon: ({focused, color, size}) => (
             <FavouriteIcon height={30} width={30} fill={focused ? "#fff" : '#45494d'} />
           ),
+          tabBarBadge: favouritePosts.length > 0 ? favouritePosts.length : undefined,
+          tabBarBadgeStyle: {backgroundColor: '#fff', color: '#000'}
         }}
       />
       <Tab.Screen

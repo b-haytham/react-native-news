@@ -48,7 +48,6 @@ const Header: React.FC<HeaderProps> = ({text, isFocused}) => {
 const styles = StyleSheet.create({
   headerContainer: {
     marginVertical: 15,
-    paddingHorizontal: 15,
   },
   text: {
     color: '#fff',

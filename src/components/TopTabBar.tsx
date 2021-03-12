@@ -82,6 +82,8 @@ const styles = StyleSheet.create({
     width,
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    borderBottomColor: '#fff',
+    borderBottomWidth: 2
     
   },
   generalIcon: {},
