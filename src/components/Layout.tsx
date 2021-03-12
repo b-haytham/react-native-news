@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({colorLevel, children, style}) => {
               ? '#050505'
               : colorLevel === '2'
               ? '#080808'
-              : '#121213',
+              : '#1f1f1f',
         },
         style,
       ]}>
