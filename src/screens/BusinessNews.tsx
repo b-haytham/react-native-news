@@ -33,7 +33,7 @@ const BusinessNews: React.FC<BusinessNewsProps> = ({route}) => {
   });
   return (
     <Layout colorLevel="1" style={styles.container}>
-      <TopTabBar activeRouteName={route.name} />
+      <TopTabBar scrollTranslateY={scrollTranslateY} activeRouteName={route.name} />
       <Animated.ScrollView
         scrollEventThrottle={16}
         onScroll={scrollHandler}

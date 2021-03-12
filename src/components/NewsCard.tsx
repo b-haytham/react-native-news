@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import {StyleSheet, View, Image, Dimensions, Text} from 'react-native';
+import {StyleSheet, View, Image, Dimensions, Text, useWindowDimensions} from 'react-native';
 
 import {Card} from 'react-native-paper';
 import TouchableScale from 'react-native-touchable-scale';
@@ -27,12 +27,14 @@ const {width} = Dimensions.get('screen');
 const NewsCard: React.FC<NewsCardProps> = ({article, isInFavourite, isFavouriteScreen}) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation()
+  const {width: W} = useWindowDimensions()
+
   return (
     <Card style={[styles.container, {height: article.media ? 300 : undefined}]}>
       {article.media && (
         <Image
           source={{uri: article.media as string}}
-          style={{width: width, height: CARD_IMAGE_HEIGHT}}
+          style={{width: W, height: CARD_IMAGE_HEIGHT}}
           resizeMode="cover"
         />
       )}
