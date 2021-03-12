@@ -11,11 +11,13 @@ import TechnologyIcon from './icons/TechnologyIcon';
 
 import TouchableScale from 'react-native-touchable-scale';
 
-interface TopTabBarProps {}
+interface TopTabBarProps {
+  activeRouteName: 'General' | 'Politics' | 'Business' | 'Tech' | 'Science' | 'Entertainment'
+}
 
 const {width} = Dimensions.get('screen');
 
-const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
+const TopTabBar: React.FC<TopTabBarProps> = ({activeRouteName}) => {
   const navigation = useNavigation();
   const route = useRoute()
   return (
@@ -25,7 +27,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.generalIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'General' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
       <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('Politics')}>
@@ -33,7 +35,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.politicsIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'Politics' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
       <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('Business')}>
@@ -41,7 +43,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.businessIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'Business' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
       <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('Tech')}>
@@ -49,7 +51,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.techIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'Tech' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
       <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('Science')}>
@@ -57,7 +59,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.scienceIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'Science' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
       <TouchableScale activeScale={0.7} onPress={()=> navigation.navigate('Entertainment')}>
@@ -65,7 +67,7 @@ const TopTabBar: React.FC<TopTabBarProps> = ({}) => {
           style={styles.partyIcon}
           width={30}
           height={30}
-          fill="#fff"
+          fill={activeRouteName === 'Entertainment' ? '#fff' : '#45494d'}
         />
       </TouchableScale>
     </View>

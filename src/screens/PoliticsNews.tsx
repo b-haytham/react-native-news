@@ -8,10 +8,10 @@ interface PoliticsNewsProps {
     route: PoliticsNewsScreenRouteProps
 }
 
-const PoliticsNews: React.FC<PoliticsNewsProps> = () => {
+const PoliticsNews: React.FC<PoliticsNewsProps> = ({route}) => {
     return (
         <View style={styles.container}>
-            <TopTabBar />
+            <TopTabBar activeRouteName={route.name} />
             <Text>PoliticsNews</Text>
         </View>
     )

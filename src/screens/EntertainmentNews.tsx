@@ -8,10 +8,10 @@ interface EntertainmentNewsProps {
     route: EntertainmentNewsScreenRouteProps
 }
 
-const EntertainmentNews: React.FC<EntertainmentNewsProps> = () => {
+const EntertainmentNews: React.FC<EntertainmentNewsProps> = ({route}) => {
     return (
         <View style={styles.container}>
-            <TopTabBar />
+            <TopTabBar activeRouteName={route.name} />
             <Text>EntertainmentNews</Text>
         </View>
     )

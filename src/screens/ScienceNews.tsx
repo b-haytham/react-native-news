@@ -8,10 +8,10 @@ interface ScienceNewsProps {
     route: ScienceNewsScreenRouteProps
 }
 
-const ScienceNews: React.FC<ScienceNewsProps> = () => {
+const ScienceNews: React.FC<ScienceNewsProps> = ({route}) => {
     return (
         <View style={styles.container}>
-            <TopTabBar />
+            <TopTabBar activeRouteName={route.name} />
             <Text>ScienceNews</Text>
         </View>
     )

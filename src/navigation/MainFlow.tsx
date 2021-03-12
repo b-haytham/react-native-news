@@ -13,6 +13,8 @@ import SettingIcon from '../components/icons/SettingIcons';
 
 const Tab = createBottomTabNavigator<BottomTabNavigationParamList>();
 
+
+
 const MainFlow = () => {
   return (
     <Tab.Navigator
@@ -26,7 +28,7 @@ const MainFlow = () => {
         component={NewsFlow}
         options={{
           tabBarIcon: ({focused, color, size}) => (
-            <HomeIcon height={30} width={30} fill="#fff" />
+            <HomeIcon height={30} width={30} fill={focused ? "#fff" : '#45494d'} />
           ),
         }}
       />
@@ -35,7 +37,7 @@ const MainFlow = () => {
         component={SearchScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => (
-            <SearchIcon height={30} width={30} fill="#fff" />
+            <SearchIcon height={30} width={30} fill={focused ? "#fff" : '#45494d'} />
           ),
         }}
       />
@@ -44,7 +46,7 @@ const MainFlow = () => {
         component={FavouriteScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => (
-            <FavouriteIcon height={30} width={30} fill="#fff" />
+            <FavouriteIcon height={30} width={30} fill={focused ? "#fff" : '#45494d'} />
           ),
         }}
       />
@@ -53,7 +55,7 @@ const MainFlow = () => {
         component={SettingsScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => (
-            <SettingIcon height={30} width={30} fill="#fff" />
+            <SettingIcon height={30} width={30} fill={focused ? "#fff" : '#45494d'} />
           ),
         }}
       />

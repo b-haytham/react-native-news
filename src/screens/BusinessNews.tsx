@@ -8,10 +8,10 @@ interface BusinessNewsProps {
     route: BusinessNewsScreenRouteProps
 }
 
-const BusinessNews: React.FC<BusinessNewsProps> = () => {
+const BusinessNews: React.FC<BusinessNewsProps> = ({route}) => {
     return (
         <View style={styles.container}>
-            <TopTabBar />
+            <TopTabBar activeRouteName={route.name} />
             <Text>PoliticsNews</Text>
         </View>
     )

@@ -11,10 +11,10 @@ interface GeneralNewsProps {
   route: GeneralNewsScreenRouteProps;
 }
 
-const GeneralNews: React.FC<GeneralNewsProps> = ({}) => {
+const GeneralNews: React.FC<GeneralNewsProps> = ({route}) => {
   return (
     <View style={styles.container}>
-      <TopTabBar />
+      <TopTabBar activeRouteName={route.name} />
       <Text>GeneralNews</Text>
     </View>
   );
