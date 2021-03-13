@@ -30,7 +30,7 @@ const NewsCard: React.FC<NewsCardProps> = ({article, isInFavourite, isFavouriteS
   const {width: W} = useWindowDimensions()
 
   return (
-    <Card style={[styles.container, {height: article.media ? 300 : undefined}]}>
+    <Card style={[styles.container]}>
       {article.media && (
         <Image
           source={{uri: article.media as string}}
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
     overflow: 'hidden',
-    height: CARD_HEIGHT,
     backgroundColor: '#000',
     marginVertical: 10,
   },

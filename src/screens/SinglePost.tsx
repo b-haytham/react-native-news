@@ -75,12 +75,12 @@ const SinglePost: React.FC<SinglePostProps> = ({route, navigation}) => {
     <Animated.View style={animatedStyles}>
     <Layout colorLevel="1" style={styles.container}>
       <ScrollView style={{flex: 1}}>
-        <View>
+        <View style={{paddingTop: article.media ? 0 : 50}}>
           <TouchableScale
             style={styles.cancelIcon}
             activeScale={0.7}
             onPress={handleGoBack}>
-            <CancelIcon width={30} height={30} fill="#000" />
+            <CancelIcon width={30} height={30} fill="#fff" />
           </TouchableScale>
           {article.media && (
             <Image
