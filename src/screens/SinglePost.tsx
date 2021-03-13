@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
+  BackHandler,
   Dimensions,
   Image,
   ScrollView,
@@ -18,6 +19,7 @@ import * as Animatable from 'react-native-animatable';
 import CancelIcon from '../components/icons/CancelIcon';
 import TouchableScale from 'react-native-touchable-scale';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { useIsFocused } from '@react-navigation/core';
 
 interface SinglePostProps {
   navigation: SingleNewsPostScreenNavigationProps;
@@ -28,13 +30,13 @@ interface SinglePostProps {
 
 const SinglePost: React.FC<SinglePostProps> = ({route, navigation}) => {
   const article = route.params.article;
+  const isFocused = useIsFocused()
   const {width: W, height: H} = useWindowDimensions()
 
   const width = useSharedValue(W)
   const height = useSharedValue(H)
-  const translateX = useSharedValue(0)
-  const translateY = useSharedValue(0)
-  const borderRadius = useSharedValue(0)
+  const translateY = useSharedValue(H)
+  const borderRadius = useSharedValue(50)
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -47,11 +49,26 @@ const SinglePost: React.FC<SinglePostProps> = ({route, navigation}) => {
     }
   })
 
+  useEffect(()=> {
+    if(isFocused) {
+      translateY.value = 0
+      borderRadius.value = 0
+    }else{
+      translateY.value = H  
+      borderRadius.value = 50    
+    }
+  }, [isFocused])
+
+  useEffect(() => {
+    const backHandler =  BackHandler.addEventListener('hardwareBackPress', handleGoBack)
+    return () => backHandler.remove()
+  },[])
+
   const handleGoBack = () => {
-    
     translateY.value = H  
     borderRadius.value = 50
     navigation.goBack()
+    return true
   }
 
   return (
